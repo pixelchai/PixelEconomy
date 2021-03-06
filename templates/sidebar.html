@@ -1,0 +1,46 @@
+<!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox" checked>
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+    <a class="sidebar-nav-item logged-in-as">Logged in as:
+        pixelzery@gmail.com</a>
+
+    <div class="sidebar-item sidebar-title">
+        <center>
+            <img src="/res/img/logo-800.png">
+            <h3>PixelEconomy</h3>
+        </center>
+        <p>Virtual marketplace for creating, buying, and selling pixel art, made by <a
+                href="https://github.com/pixelzery" target="_blank">Pixelzery</a>.
+            <br>For more information, see <a href="/about">about</a>.</p>
+    </div>
+
+    <nav class="sidebar-nav">
+        <a class="sidebar-nav-item active"
+            href="/">Marketplace</a>
+
+        <a class="sidebar-nav-item"
+            href="/create">Create</a>
+
+        <a class="sidebar-nav-item"
+            href="/palettes">Palettes</a>
+
+        <a class="sidebar-nav-item"
+            href="/my-portfolio">My Portfolio</a>
+
+
+        <a class="sidebar-nav-item"
+            href="/about">About</a>
+
+
+        <span class="sidebar-nav-item">Currently v{{ site.version }}</span>
+    </nav>
+
+    <div class="sidebar-item">
+        <p>
+            &copy; {{ site.year }}. All rights reserved.
+        </p>
+    </div>
+</div>
