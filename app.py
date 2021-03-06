@@ -1,8 +1,18 @@
 from datetime import datetime
-
+import flask_login
 from flask import Flask, render_template, send_from_directory
 
 app = Flask(__name__)
+
+login_manager = flask_login.LoginManager()
+login_manager.init_app(app)
+
+class User(flask_login.UserMixin):
+    pass
+
+@login_manager.user_loader
+def user_loader(userid):
+    pass
 
 @app.context_processor
 def inject_site_data():
