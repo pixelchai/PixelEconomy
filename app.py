@@ -25,6 +25,10 @@ def send_res(path):
 def marketplace():
     return render_template(r"pages/marketplace.html", title="Marketplace")
 
+@app.route('/create')
+def create():
+    return render_template(r"pages/create.html", title="Create")
+
 
 if __name__ == '__main__':
     app.run()

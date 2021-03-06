@@ -18,16 +18,16 @@
     </div>
 
     <nav class="sidebar-nav">
-        <a class="sidebar-nav-item active"
+        <a class="sidebar-nav-item{% if title == 'Marketplace' %} active{% endif %}"
             href="/">Marketplace</a>
 
-        <a class="sidebar-nav-item"
+        <a class="sidebar-nav-item{% if title == 'Create' %} active{% endif %}"
             href="/create">Create</a>
 
-        <a class="sidebar-nav-item"
+        <a class="sidebar-nav-item{% if title == 'Palettes' %} active{% endif %}"
             href="/palettes">Palettes</a>
 
-        <a class="sidebar-nav-item"
+        <a class="sidebar-nav-item{% if title == 'My Portfolio' %} active{% endif %}"
             href="/my-portfolio">My Portfolio</a>
 
 

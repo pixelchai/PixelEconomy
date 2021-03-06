@@ -1,0 +1,22 @@
+{% extends 'page.html' %}
+
+{% block page_content %}
+<div class="pixelart">
+    <canvas class="pixelart-canvas"></canvas>
+    <div class="palette-select">
+        <select>
+        </select>
+        <div class="palette">
+        </div>
+    </div>
+    <div class="meta">
+        <span>Title: </span>
+        <input type="text" class="title-input">
+        <button type="text">Save</button>
+    </div>
+</div>
+<script>
+    let pixelArtConfig = { "palettes": { "Basic": ["#FFFFFF", "#000000"], "Greyscale": ["#DDDDDD", "#AAAAAA", "#777777", "#555555", "#222222"], "Gameboy-like": ["#F9FFB3", "#ABCC47", "#3D8026", "#1B2E3A", "#00131A"] } };
+</script>
+<script src="/res/js/pixelart.js"></script>
+{% endblock %}
