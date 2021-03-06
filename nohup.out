@@ -1,0 +1,95 @@
+[2021-03-07 01:38:55 +0000] [92293] [INFO] Starting gunicorn 20.0.4
+[2021-03-07 01:38:55 +0000] [92293] [INFO] Listening at: http://0.0.0.0:8080 (92293)
+[2021-03-07 01:38:55 +0000] [92293] [INFO] Using worker: sync
+[2021-03-07 01:38:55 +0000] [92294] [INFO] Booting worker with pid: 92294
+2021-03-07 01:38:56,016 - INFO - logger init! --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[2021-03-07 01:39:25 +0000] [92293] [CRITICAL] WORKER TIMEOUT (pid:92294)
+[2021-03-07 01:39:25 +0000] [92294] [INFO] Worker exiting (pid: 92294)
+[2021-03-07 01:39:26 +0000] [92412] [INFO] Booting worker with pid: 92412
+2021-03-07 01:39:26,355 - INFO - logger init! --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[2021-03-07 01:39:56 +0000] [92293] [CRITICAL] WORKER TIMEOUT (pid:92412)
+[2021-03-07 01:39:56 +0000] [92412] [INFO] Worker exiting (pid: 92412)
+[2021-03-07 01:39:56 +0000] [92439] [INFO] Booting worker with pid: 92439
+2021-03-07 01:39:56,679 - INFO - logger init! --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[2021-03-07 01:40:26 +0000] [92293] [CRITICAL] WORKER TIMEOUT (pid:92439)
+[2021-03-07 01:40:26 +0000] [92439] [INFO] Worker exiting (pid: 92439)
+[2021-03-07 01:40:26 +0000] [92495] [INFO] Booting worker with pid: 92495
+2021-03-07 01:40:27,022 - INFO - logger init! --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[2021-03-07 01:40:50 +0000] [92293] [INFO] Handling signal: term
+[2021-03-07 01:40:57 +0000] [92495] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/site-packages/gunicorn/arbiter.py", line 583, in spawn_worker
+    worker.init_process()
+  File "/usr/lib/python3.9/site-packages/gunicorn/workers/base.py", line 119, in init_process
+    self.load_wsgi()
+  File "/usr/lib/python3.9/site-packages/gunicorn/workers/base.py", line 144, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 49, in load
+    return self.load_wsgiapp()
+  File "/usr/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 39, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/usr/lib/python3.9/site-packages/gunicorn/util.py", line 358, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 790, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/media/Coding/py/PixelEconomy/app.py", line 5, in <module>
+    from db import db
+  File "/media/Coding/py/PixelEconomy/db.py", line 137, in <module>
+    init()
+  File "/media/Coding/py/PixelEconomy/db.py", line 11, in init
+    if db["db_meta"].find_one({"initialised": True}):
+  File "/home/ab/.local/lib/python3.9/site-packages/pymongo/collection.py", line 1319, in find_one
+    for result in cursor.limit(-1):
+  File "/home/ab/.local/lib/python3.9/site-packages/pymongo/cursor.py", line 1207, in next
+    if len(self.__data) or self._refresh():
+  File "/home/ab/.local/lib/python3.9/site-packages/pymongo/cursor.py", line 1100, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "/home/ab/.local/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1816, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "/home/ab/.local/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1766, in __start_session
+    server_session = self._get_server_session()
+  File "/home/ab/.local/lib/python3.9/site-packages/pymongo/mongo_client.py", line 1802, in _get_server_session
+    return self._topology.get_server_session()
+  File "/home/ab/.local/lib/python3.9/site-packages/pymongo/topology.py", line 485, in get_server_session
+    self._select_servers_loop(
+  File "/home/ab/.local/lib/python3.9/site-packages/pymongo/topology.py", line 215, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: localhost:27017: [Errno 111] Connection refused, Timeout: 30s, Topology Description: <TopologyDescription id: 60442f0b31911380c42c818c, topology_type: Single, servers: [<ServerDescription ('localhost', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27017: [Errno 111] Connection refused')>]>
+[2021-03-07 01:40:57 +0000] [92495] [INFO] Worker exiting (pid: 92495)
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/site-packages/gunicorn/arbiter.py", line 224, in run
+    handler()
+  File "/usr/lib/python3.9/site-packages/gunicorn/arbiter.py", line 257, in handle_term
+    raise StopIteration
+StopIteration
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/bin/gunicorn", line 33, in <module>
+    sys.exit(load_entry_point('gunicorn==20.0.4', 'console_scripts', 'gunicorn')())
+  File "/usr/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 58, in run
+    WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]").run()
+  File "/usr/lib/python3.9/site-packages/gunicorn/app/base.py", line 228, in run
+    super().run()
+  File "/usr/lib/python3.9/site-packages/gunicorn/app/base.py", line 72, in run
+    Arbiter(self).run()
+  File "/usr/lib/python3.9/site-packages/gunicorn/arbiter.py", line 227, in run
+    self.halt()
+  File "/usr/lib/python3.9/site-packages/gunicorn/arbiter.py", line 342, in halt
+    self.stop()
+  File "/usr/lib/python3.9/site-packages/gunicorn/arbiter.py", line 393, in stop
+    time.sleep(0.1)
+  File "/usr/lib/python3.9/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+    self.reap_workers()
+  File "/usr/lib/python3.9/site-packages/gunicorn/arbiter.py", line 525, in reap_workers
+    raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
