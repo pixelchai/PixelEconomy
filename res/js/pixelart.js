@@ -53,8 +53,7 @@ function drawPixels() {
     for (let y = 0; y < DIM; y++) {
         let pixelRow = pixels[y];
         for (let x = 0; x < DIM; x++) {
-            let pixel = pixelRow[x];
-            ctx.fillStyle = pixel;
+            ctx.fillStyle = pixelRow[x];
             ctx.fillRect(x * division, y * division, Math.ceil(division) + 1, Math.ceil(division) + 1);
         }
     }
@@ -64,7 +63,7 @@ function start() {
     initPixels();
     c.addEventListener('mousemove', function (evt) {
         division = cWidth / DIM;
-        var rect = c.getBoundingClientRect();
+        let rect = c.getBoundingClientRect();
 
         mouseX = Math.floor((evt.clientX - rect.left) / division);
         mouseY = Math.floor((evt.clientY - rect.top) / division);
@@ -158,7 +157,7 @@ function loadPalette(paletteKey) {
         let colourElement = document.createElement("div");
         colourElement.classList.add("palette-color");
 
-        if (curColour == colour) {
+        if (curColour === colour) {
             colourElement.classList.add("selected");
         }
 
@@ -168,6 +167,15 @@ function loadPalette(paletteKey) {
 
         paletteElement.appendChild(colourElement);
     }
+}
+
+function getData(){
+    shouldDrawGrid = false;
+    draw();
+    let ret = c.toDataURL();
+    shouldDrawGrid = true;
+    draw();
+    return ret;
 }
 
 function clickedCanvas() {
