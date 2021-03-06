@@ -1,0 +1,10 @@
+.idea/
+/venv/
+**/.fuse_hidden*
+__pycache__/
+.ipynb_checkpoints/
+
+mongo/data/
+mongo/log/
+mongo/nohup.out
+mongo/pid.txt
