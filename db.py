@@ -1,6 +1,9 @@
+from logger import logger
 import pymongo
 from pymongo import MongoClient
+
 client = MongoClient("localhost", 27017)
+db = client["pixeleconomy"]
 
 mock_db = {
     "users": {
@@ -54,3 +57,19 @@ mock_db = {
         1234,
     ]
 }
+
+def init():
+    if db["db_meta"].find_one({"initialised": True}):
+        logger.info("Database has already been initialised!")
+        return
+
+
+
+    # update initialised status
+    db["db_meta"].insert_one({
+        "initialised": True,
+    })
+    logger.info("Initialised database!")
+
+init()
+# db["db_meta"].drop()
