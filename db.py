@@ -7,7 +7,7 @@ db = client["pixeleconomy"]
 
 mock_db = {
     "users": {
-        "badArtist": {
+        "bobJoss": {
             "palettes": ["Basic", "Greyscale", "Gameboy-like"],
             "balance": 500,
             "password": "hello123",  # very insecure, needs improving before prod
@@ -58,18 +58,52 @@ mock_db = {
     ]
 }
 
+
 def init():
     if db["db_meta"].find_one({"initialised": True}):
         logger.info("Database has already been initialised!")
         return
 
-
+    db["palettes"].insert_many([
+        {
+            "name": "Basic",
+            "colours": [
+                "#FFFFFF",
+                "#000000"
+            ],
+            "price": 0,
+        },
+        {
+            "name": "Greyscale",
+            "colours": [
+                "#DDDDDD",
+                "#AAAAAA",
+                "#777777",
+                "#555555",
+                "#222222"
+            ],
+            "price": 0
+        },
+        {
+            "name": "Gameboy-like",
+            "colours": [
+                "#F9FFB3",
+                "#ABCC47",
+                "#3D8026",
+                "#1B2E3A",
+                "#00131A"
+            ],
+            "price": 0
+        }
+    ])
+    logger.debug("Initialised palettes")
 
     # update initialised status
     db["db_meta"].insert_one({
         "initialised": True,
     })
     logger.info("Initialised database!")
+
 
 init()
 # db["db_meta"].drop()
