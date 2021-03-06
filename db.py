@@ -64,12 +64,15 @@ def init():
     db["market"].insert_many([
         {
             "art": art_higher_than,
+            "price": 130,
         },
         {
             "art": art_grassy_hill,
+            "price": 100,
         },
         {
             "art": art_mt_abstract,
+            "price": 42,
         }
     ])
 
