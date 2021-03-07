@@ -13,8 +13,7 @@
                   "price": price,
               })
             }).then(()=>{
-                // todo: reload
-                console.log("wow!!!");
+                location.reload();
             });
         });
     }

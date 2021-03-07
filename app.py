@@ -137,7 +137,7 @@ def my_portfolio():
                 "creator": creator_username,
                 "data": data_art["data"],
                 "id": art_id,
-                "on_marketplace": db["market"].find({"art": data_art["_id"]}) is not None,
+                "on_marketplace": db["market"].find_one({"art": data_art["_id"]}) is not None,
             })
     except:
         pass
