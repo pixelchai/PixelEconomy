@@ -1,10 +1,14 @@
-.logged-in-as,
-.logged-in-as.active, a.logged-in-as:hover, a.logged-in-as:focus
+.user-data,
+.user-data.active, a.user-data:hover, a.user-data:focus
 {
     text-decoration: none;
     background-color: rgba(255,255,255,0.1);
-    border-bottom: 1px solid rgba(255,255,255,0.5);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
     border-top: none;
+}
+
+.user-data-last{
+    border-bottom: 1px solid rgba(255,255,255,0.5);
 }
 
 .sidebar-title img {

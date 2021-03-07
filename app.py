@@ -73,6 +73,24 @@ def inject_site_data():
         }
     }
 
+@app.context_processor
+def inject_user_data():
+    try:
+        user_data = db["users"].find_one({"username": flask_login.current_user.id})
+        return {
+            "user": {
+                "username": user_data["username"],
+                "balance": user_data["balance"],
+            }
+        }
+    except:
+        return {
+            "user": {
+                "username": "invalid",
+                "balance": -1,
+            }
+        }
+
 
 @app.route('/res/<path:path>')
 def send_res(path):

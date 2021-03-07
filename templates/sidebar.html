@@ -4,8 +4,10 @@
 
 <!-- Toggleable sidebar -->
 <div class="sidebar" id="sidebar">
-    <a class="sidebar-nav-item logged-in-as">Logged in as:
-        pixelzery@gmail.com</a>
+    <a class="sidebar-nav-item user-data">Logged in as:
+        {{ user.username }}</a>
+    <a class="sidebar-nav-item user-data user-data-last">Balance:
+            {{ user.balance }}</a>
 
     <div class="sidebar-item sidebar-title">
         <center>
