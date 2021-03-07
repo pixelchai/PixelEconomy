@@ -141,6 +141,10 @@ def my_portfolio():
 def create():
     return render_template(r"pages/create.html", title="Create")
 
+@app.route("/about")
+def about():
+    return render_template(r"pages/about.html", title="About")
+
 @app.route("/")
 def index():
     logged_in = False
