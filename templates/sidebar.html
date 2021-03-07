@@ -24,8 +24,8 @@
         <a class="sidebar-nav-item{% if title == 'Create' %} active{% endif %}"
             href="/create">Create</a>
 
-        <a class="sidebar-nav-item{% if title == 'Palettes' %} active{% endif %}"
-            href="/palettes">Palettes</a>
+{#        <a class="sidebar-nav-item{% if title == 'Palettes' %} active{% endif %}"#}
+{#            href="/palettes">Palettes</a>#}
 
         <a class="sidebar-nav-item{% if title == 'My Portfolio' %} active{% endif %}"
             href="/my-portfolio">My Portfolio</a>
@@ -33,6 +33,9 @@
 
         <a class="sidebar-nav-item"
             href="/about">About</a>
+
+        <a class="sidebar-nav-item"
+                href="/logout">Log Out</a>
 
 
         <span class="sidebar-nav-item">Currently v{{ site.version }}</span>

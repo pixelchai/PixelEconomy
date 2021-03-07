@@ -34,7 +34,7 @@ def init():
     }).inserted_id
 
     user_badartist = db["users"].insert_one({
-        "username": "BadArtist",
+        "username": "badartist",
         "password": "password",
         "balance": 3000,
         "portfolio": [],

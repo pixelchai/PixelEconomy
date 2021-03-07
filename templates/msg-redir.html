@@ -1,0 +1,12 @@
+{% extends 'page.html' %}
+
+{% block page_content %}
+    <p>{{ content }}</p>
+    <p>Please wait, you will be redirected automatically.</p>
+    <script>
+        setTimeout(function () {
+            window.location.href = '/';
+        }, 2000);
+    </script>
+{% endblock %}
+
