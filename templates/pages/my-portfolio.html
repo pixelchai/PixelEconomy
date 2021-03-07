@@ -5,7 +5,7 @@
         <div class="gridbox">
             {% for art in arts %}
                 <div class="grid-item">
-                    <div class="art-item">
+                    <div class="art-item" art-id="{{ art.id }}">
                         <center><img src="{{ art.data }}"></center>
                         <h6>{{ art.title }} &mdash; {{ art.creator }}</h6>
                         <center><span>Price: </span><input type="number" min="1" step="any" value="50"/><button>Sell</button></center>
@@ -14,4 +14,5 @@
             {% endfor %}
         </div>
     </div>
+    <script src="/res/js/sell.js"></script>
 {% endblock %}

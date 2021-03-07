@@ -178,3 +178,7 @@
 .art-item span {
     font-size: 16px;
 }
+
+.disabled-button {
+    opacity: 0.4;
+}

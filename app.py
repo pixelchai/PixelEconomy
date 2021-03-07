@@ -1,5 +1,7 @@
 from datetime import datetime
 import flask_login
+from bson import ObjectId
+
 from db import db
 from logger import logger
 import json
@@ -114,6 +116,7 @@ def marketplace():
             "creator": creator_username,
             "price": market_entry["price"],
             "data": data_art["data"],
+            "id": art_id,
         })
 
     return render_template(r"pages/marketplace.html", title="Marketplace", arts=arts)
@@ -133,6 +136,7 @@ def my_portfolio():
                 "title": data_art["title"],
                 "creator": creator_username,
                 "data": data_art["data"],
+                "id": art_id,
             })
     except:
         pass
@@ -165,6 +169,7 @@ def index():
         return flask.redirect(flask.url_for("login"))
 
 @app.route("/api/save", methods=['POST'])
+@flask_login.login_required
 def api_save():
     body = json.loads(flask.request.data.decode('utf8'))
     try:
@@ -175,6 +180,21 @@ def api_save():
             "data": body["data"]
         }).inserted_id
         db["users"].update_one({"_id": user_data["_id"]}, {"$push": {"portfolio": art_id}})
+    except:
+        pass
+
+    return ""
+
+@app.route("/api/sell", methods=['POST'])
+@flask_login.login_required
+def api_sell():
+    body = json.loads(flask.request.data.decode('utf8'))
+    try:
+        art_data = db["art"].find_one({"_id": ObjectId(body["art_id"])})
+        db["market"].insert_one({
+            "art": art_data["_id"],
+            "price": body["price"],
+        })
     except:
         pass
 
