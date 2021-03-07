@@ -116,7 +116,7 @@ def marketplace():
             "creator": creator_username,
             "price": market_entry["price"],
             "data": data_art["data"],
-            "id": art_id,
+            "id": market_entry["_id"],
         })
 
     return render_template(r"pages/marketplace.html", title="Marketplace", arts=arts)
@@ -201,6 +201,42 @@ def api_sell():
 
     return ""
 
+@app.route("/api/buy", methods=['POST'])
+@flask_login.login_required
+def api_buy():
+    body = json.loads(flask.request.data.decode('utf8'))
+    try:
+        # gather market data
+        market_id = body["market_id"]
+        market_data = db["market"].find_one({"_id": ObjectId(market_id)})
+
+        # get user data
+        user = db["users"].find_one({"username": flask_login.current_user.id})
+
+        # get owner of art
+        owner = db["users"].find_one({"portfolio": market_data["art"]})
+
+        # remove art from its (previous) owner's portfolio
+        db["users"].update_one({"_id": owner["_id"]}, {"$pull": {"portfolio": market_data["art"]}})
+
+        # add art to new owner's portfolio (the user's)
+        db["users"].update_one({"_id": user["_id"]}, {"$push": {"portfolio": market_data["art"]}})
+
+        # subtract price from user's balance
+        price = market_data["price"]
+        original_balance = db["users"].find_one({"_id": user["_id"]})["balance"]
+        db["users"].update_one({"_id": user["_id"]}, {"$set": {"balance": original_balance - price}})
+
+        # add price to original owner's balance
+        original_balance = db["users"].find_one({"_id": owner["_id"]})["balance"]
+        db["users"].update_one({"_id": owner["_id"]}, {"$set": {"balance": original_balance + price}})
+
+        # remove art from marketplace
+        db["market"].remove({"_id": ObjectId(market_id)})
+    except:
+        pass
+
+    return ""
 
 
 if __name__ == '__main__':
