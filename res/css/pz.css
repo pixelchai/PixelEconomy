@@ -174,3 +174,7 @@
     border: 1px solid rgba(0,0,0,0.5);
     border-radius: 0;
 }
+
+.art-item span {
+    font-size: 16px;
+}
