@@ -8,7 +8,7 @@
                     <div class="art-item" art-id="{{ art.id }}">
                         <center><img src="{{ art.data }}"></center>
                         <h6>{{ art.title }} &mdash; {{ art.creator }}</h6>
-                        <center><span>Price: </span><input type="number" min="1" step="any" value="50"/><button>Sell</button></center>
+                        <center><span>Price: </span><input type="number" min="1" step="any" value="50"/><button{% if art.on_marketplace %} class="disabled-button"{% endif %}>Sell</button></center>
                     </div>
                 </div>
             {% endfor %}
