@@ -2,6 +2,7 @@ from datetime import datetime
 import flask_login
 from db import db
 from logger import logger
+import json
 
 import flask
 from flask import Flask, render_template, send_from_directory
@@ -98,6 +99,7 @@ def send_res(path):
 
 
 @app.route('/marketplace')
+@flask_login.login_required
 def marketplace():
     arts = []
 
@@ -117,6 +119,7 @@ def marketplace():
     return render_template(r"pages/marketplace.html", title="Marketplace", arts=arts)
 
 @app.route('/my-portfolio')
+@flask_login.login_required
 def my_portfolio():
     arts = []
 
@@ -138,10 +141,12 @@ def my_portfolio():
 
 
 @app.route('/create')
+@flask_login.login_required
 def create():
     return render_template(r"pages/create.html", title="Create")
 
 @app.route("/about")
+@flask_login.login_required
 def about():
     return render_template(r"pages/about.html", title="About")
 
@@ -158,6 +163,23 @@ def index():
         return flask.redirect(flask.url_for("marketplace"))
     else:
         return flask.redirect(flask.url_for("login"))
+
+@app.route("/api/save", methods=['POST'])
+def api_save():
+    body = json.loads(flask.request.data.decode('utf8'))
+    try:
+        user_data = db["users"].find_one({"username": flask_login.current_user.id})
+        art_id = db["art"].insert_one({
+            "title": body["title"],
+            "creator": user_data["_id"],
+            "data": body["data"]
+        }).inserted_id
+        db["users"].update_one({"_id": user_data["_id"]}, {"$push": {"portfolio": art_id}})
+    except:
+        pass
+
+    return ""
+
 
 
 if __name__ == '__main__':

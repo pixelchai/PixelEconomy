@@ -3,7 +3,7 @@ import pymongo
 from pymongo import MongoClient
 
 client = MongoClient("localhost", 27017)
-client.drop_database("pixeleconomy")  # TODO
+# client.drop_database("pixeleconomy")
 db = client["pixeleconomy"]
 
 
@@ -30,6 +30,13 @@ def init():
         "username": "bicasso",
         "password": "password",
         "balance": 8000,
+        "portfolio": [],
+    }).inserted_id
+
+    user_test = db["users"].insert_one({
+        "username": "test",
+        "password": "password",
+        "balance": 800000,
         "portfolio": [],
     }).inserted_id
 
