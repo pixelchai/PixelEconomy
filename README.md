@@ -29,3 +29,6 @@ To serve a production server, use gunicorn:
 ```
 gunicorn -b 0.0.0.0:80 app:app
 ```
+
+## Prototype
+In the early stages of development, I also used Jekyll to prototype the front-end in a separate repo. See: https://github.com/pixelzery/PixelEconomyPrototype
