@@ -3,7 +3,7 @@ import pymongo
 from pymongo import MongoClient
 
 client = MongoClient("localhost", 27017)
-# client.drop_database("pixeleconomy")  # TODO
+client.drop_database("pixeleconomy")  # TODO
 db = client["pixeleconomy"]
 
 
@@ -59,7 +59,7 @@ def init():
     }).inserted_id
 
     db["users"].update_one({"_id": user_ilikemountains},
-                           {"$push": {"portfolio": [art_higher_than, art_grassy_hill, art_mt_abstract]}})
+                           {"$set": {"portfolio": [art_higher_than, art_grassy_hill, art_mt_abstract]}})
 
     db["market"].insert_many([
         {

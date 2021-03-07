@@ -121,18 +121,18 @@ def my_portfolio():
     arts = []
 
     # get arts from database
-    # TODO
-    # for market_entry in db["market"].find():
-    #     art_id = market_entry["art"]
-    #
-    #     data_art = db["art"].find_one({"_id": art_id})
-    #     creator_username = db["users"].find_one({"_id": data_art["creator"]})["username"]
-    #     arts.append({
-    #         "title": data_art["title"],
-    #         "creator": creator_username,
-    #         "price": market_entry["price"],
-    #         "data": data_art["data"],
-    #     })
+    try:
+        user_data = db["users"].find_one({"username": flask_login.current_user.id})
+        for art_id in user_data["portfolio"]:
+            data_art = db["art"].find_one({"_id": art_id})
+            creator_username = db["users"].find_one({"_id": data_art["creator"]})["username"]
+            arts.append({
+                "title": data_art["title"],
+                "creator": creator_username,
+                "data": data_art["data"],
+            })
+    except:
+        pass
 
     return render_template(r"pages/my-portfolio.html", title="My Portfolio", arts=arts)
 
